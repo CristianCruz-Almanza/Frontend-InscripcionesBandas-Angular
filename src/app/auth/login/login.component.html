@@ -1,0 +1,137 @@
+<section class="h-100 gradient-form img-fluid">
+  <img src="../../../assets/img/banner-final.jpg" class="img-fluid"  alt="">
+  <div class="card   mt-0">
+    <div class="row h-100 m-2 m-sm-4 m-md-4 m-lg-4">
+      <h3 class="text-center"><b>Formulario de Inscripciones</b></h3>
+      <form [formGroup]="userForm">
+        <div class="p-fluid grid">
+          <div class="field col-12">
+
+            <div class="field">
+              <label class="block"
+                >Nombre del grupo o banda<span class="text-danger">*</span></label
+              >
+              <input
+              type="text"
+              formControlName="nombre"
+              style="text-transform: uppercase"
+              pInputText
+              [pKeyFilter]="expRegValid"
+              [class.ng-dirty]="inputValid('nombre')"
+              placeholder="Ej.: MARIACHI D..."
+              class="mt-1"
+              />
+              <small *ngIf="inputValid('nombre')" class="p-error block"
+                >{{messageError('nombre')}}</small
+              >
+            </div>
+            <div class="field">
+              <label class="block"
+                >Genero Musical <span class="text-danger">*</span></label
+              >
+              <p-dropdown
+              optionsCode="name"
+                [options]="items"
+                formControlName="generomusical"
+                placeholder="Selecciona Genero musical"
+                [class.ng-dirty]="inputValid('generomusical')"
+                optionLabel="name"
+                optionValue="code"
+              >
+            </p-dropdown>
+            </div>
+            <div class="row mt-1">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="block">
+                  Cantidad integrantes <span class="text-danger">*</span>
+                </label>
+                <p-inputNumber
+                  formControlName = "cantintegrantes"
+                  [class.ng-dirty]="inputValid('cantintegrantes')"
+                  mode="decimal"
+                  [showButtons]="true"
+                  inputId="minmax-buttons"
+                  [min]="1"
+                  [max]="50">
+                </p-inputNumber>
+                <small *ngIf="inputValid('cantintegrantes')" class="p-error block">{{
+                  messageError("cantintegrantes")
+                }}</small>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <label class="block"
+                  >Telefono/Celular<span class="text-danger">*</span></label
+                >
+                <input
+                  type="number"
+                  pInputText
+                  formControlName="cellphone"
+                  placeholder="EJ. 75874521"
+                  class="mt-1"
+                  pKeyFilter="int"
+                  [class.ng-dirty]="inputValid('cellphone')"
+                />
+                <small
+                  *ngIf="inputValid('cellphone')"
+                  class="p-error block"
+                  >El telefono/celular requiere de minimo 8 números</small
+                >
+              </div>
+            </div>
+            <div class="field">
+              <label class="block"
+                >Nombre de representante <span class="text-danger">*</span></label
+              >
+              <input
+                ttype="text"
+                formControlName="nombrerepre"
+                style="text-transform: uppercase"
+                pInputText
+                [pKeyFilter]="expRegValid"
+                [class.ng-dirty]="inputValid('nombrerepre')"
+                placeholder="Ej.: CARLOS O..."
+                class="mt-1"
+              />
+              <small *ngIf="inputValid('nombrerepre')" class="p-error block"
+                >{{messageError('nombrerepre')}}</small
+              >
+            </div>
+
+            </div>
+            <div class="field mt-2">
+                <label class="block"
+                  >Correo<span class="text-danger"> *</span></label
+                >
+                <input
+                type="text"
+                pInputText
+                formControlName="email"
+                name="email"
+                placeholder="EJ. .....@...com"
+                class="mt-1"
+                [class.ng-dirty]="inputValid('email')"
+                />
+                <small
+                    *ngIf="inputValid('email')"
+                    class="p-error block"
+                    >El correo no es valido</small
+
+                >
+            </div>
+            <br>
+          <div>
+            <p-button
+            (click)="!loading ?  saveUser() : null"
+            [iconPos]="'center'"
+            label="Inscribirme"
+            [loading]="loading"
+          ></p-button>
+          </div>
+
+          </div>
+      </form>
+
+    </div>
+  </div>
+</section>
+
